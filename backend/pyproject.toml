@@ -1,0 +1,10 @@
+[project]
+name = "ocean-backend"
+version = "0.1.0"
+description = "Ocean Resort booking API — FastAPI, Pydantic v2, MongoDB, Redis cache, REST + GraphQL"
+requires-python = ">=3.13"
+dependencies = []  # managed via requirements.txt
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

@@ -1,0 +1,18 @@
+# Cache headers for Netlify deploys (this file is copied into dist/ and applied automatically).
+# Order matters: matching blocks are merged and the LAST matching value wins,
+# so the broad rule comes first and specific paths override it afterwards.
+
+/*
+  Cache-Control: public, max-age=604800
+
+/assets/*.js
+/assets/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/images/*
+/assets/videos/*
+/assets/fonts/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/index.html
+  Cache-Control: no-cache

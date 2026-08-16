@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Ocean brand mark: an "O" ring with a wave, in the brand palette -->
+  <rect width="64" height="64" rx="14" fill="#322018"/>
+  <circle cx="32" cy="29" r="17" fill="none" stroke="#EAE5DF" stroke-width="4.5"/>
+  <path d="M16 43c4.2-3.6 7.2-3.6 11.4 0s7.2 3.6 11.4 0 4.8-2.6 8-1.2" fill="none" stroke="#EAE5DF" stroke-width="4" stroke-linecap="round"/>
+</svg>

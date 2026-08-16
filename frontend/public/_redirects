@@ -1,0 +1,9 @@
+# Legacy package URLs → renamed project pages (permanent 301 so search
+# engines transfer ranking to the new slugs).
+/packages/damai-dolphins    /packages/ocean-dolphins    301
+/packages/damai-romance     /packages/ocean-romance     301
+/packages/damai-spa-bliss   /packages/ocean-spa-bliss   301
+/blog/damai-resort-spa-in-bali    /blog/ocean-resort-spa-in-bali    301
+
+# SPA fallback: serve index.html for client-side routes (Netlify)
+/*    /index.html   200
