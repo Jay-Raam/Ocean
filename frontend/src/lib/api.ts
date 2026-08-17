@@ -74,6 +74,52 @@ export async function listPromos(): Promise<PromoInfo[]> {
   }
 }
 
+export interface ContactMessagePayload {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+export interface ContactSubmitResult {
+  ok: boolean;
+  error?: string;
+}
+
+/** Send a contact/enquiry form message (POST /messages). */
+export async function sendContactMessage(payload: ContactMessagePayload): Promise<ContactSubmitResult> {
+  try {
+    const res = await fetch(`${API_BASE}/messages`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      let detail = `Request failed (${res.status})`;
+      try {
+        const body = (await res.json()) as { detail?: string | Array<{ msg?: string }> };
+        if (body.detail) {
+          detail = Array.isArray(body.detail)
+            ? body.detail
+                .map((d) => (d.msg ?? "").replace(/^Value error, /, ""))
+                .filter(Boolean)
+                .join(". ")
+            : body.detail;
+        }
+      } catch {
+        /* ignore parse errors */
+      }
+      return { ok: false, error: detail };
+    }
+    return { ok: true };
+  } catch (err) {
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : "Could not reach the booking service. Is the backend running?",
+    };
+  }
+}
+
 export interface BookingSubmitPayload {
   checkin: string;
   checkout: string;

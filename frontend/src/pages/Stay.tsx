@@ -3,8 +3,9 @@ import { DefaultHeader } from "../components/sections/DefaultHeader";
 import { Link as RouterLink } from "react-router-dom";
 import { Ornament as OrnamentIcon } from "../components/ui/icons";
 import { BigImage, AfterBigImage } from "../components/sections/PageSections";
+import { FaqSection } from "../components/sections/FaqSection";
 import { assets } from "../lib/assets";
-import { VILLAS } from "../lib/content";
+import { FAQ_ITEMS, VILLAS } from "../lib/content";
 import { useApp } from "../lib/AppContext";
 import { usePageMeta } from "../hooks/usePageMeta";
 
@@ -31,6 +32,7 @@ export function Stay() {
           </ul>
         </div>
       </section>
+      <FaqSection items={FAQ_ITEMS} title="Questions about your stay" eyebrow="Good to know" />
       <BigImage src={assets.stay.bigImage} alt="Ocean gardens" />
       <AfterBigImage src={assets.stay.bigImage2} alt="Ocean pavilion detail" />
     </PageShell>

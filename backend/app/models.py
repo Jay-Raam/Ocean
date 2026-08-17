@@ -4,7 +4,16 @@ import re
 from datetime import date, datetime, timezone
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from typing import Annotated
+
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StringConstraints,
+    field_validator,
+    model_validator,
+)
 
 
 class AddOn(BaseModel):
@@ -143,6 +152,37 @@ class Booking(BookingCreate):
     discount_amount: int = Field(default=0, ge=0)
     promo: PromoLine | None = None
     card_last4: str | None = None
+
+    @classmethod
+    def now_utc(cls) -> datetime:
+        return datetime.now(timezone.utc)
+
+
+class ContactMessageCreate(BaseModel):
+    """A website contact/enquiry form submission."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    name: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=120)]
+    email: str = Field(min_length=3, max_length=254)
+    subject: Annotated[str, StringConstraints(strip_whitespace=True, max_length=120)] = "General enquiry"
+    message: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=5000)]
+
+    @field_validator("email")
+    @classmethod
+    def _email(cls, v: str) -> str:
+        if "@" not in v or "." not in v.rsplit("@", 1)[-1]:
+            raise ValueError("invalid email address")
+        return v.strip().lower()
+
+
+class ContactMessage(ContactMessageCreate):
+    """A stored contact message."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    id: str
+    created_at: datetime
 
     @classmethod
     def now_utc(cls) -> datetime:

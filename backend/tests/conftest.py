@@ -20,11 +20,13 @@ from app.main import app
 
 @pytest.fixture(autouse=True)
 async def _fresh_store():
-    """Reset the booking + promo stores before every test (module-level singletons)."""
+    """Reset the booking + promo + message stores before every test (module-level singletons)."""
     repositories._repo = None
+    repositories._msg_repo = None
     promos_module._repo = None
     yield
     repositories._repo = None
+    repositories._msg_repo = None
     promos_module._repo = None
 
 

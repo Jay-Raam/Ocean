@@ -83,3 +83,64 @@ async def get_booking_repository() -> BookingRepository:
             _repo = MemoryBookingRepository()
             logger.info("Using in-memory booking store (MongoDB unavailable).")
         return _repo
+
+
+class MessageRepository(Protocol):
+    async def create(self, message: dict[str, Any]) -> dict[str, Any]:
+        ...
+
+    async def list(self) -> list[dict[str, Any]]:
+        ...
+
+
+class MongoMessageRepository:
+    """Stores contact messages in the `messages` collection."""
+
+    COLLECTION = "messages"
+
+    async def create(self, message: dict[str, Any]) -> dict[str, Any]:
+        doc = dict(message)
+        doc["_id"] = doc.pop("id")
+        await get_mongo_db()[self.COLLECTION].insert_one(doc)
+        return message
+
+    async def list(self) -> list[dict[str, Any]]:
+        docs = await get_mongo_db()[self.COLLECTION].find().sort("created_at", -1).to_list(length=100)
+        for doc in docs:
+            doc["id"] = doc.pop("_id")
+        return docs
+
+
+class MemoryMessageRepository:
+    def __init__(self) -> None:
+        self._store: dict[str, dict[str, Any]] = {}
+        self._lock = asyncio.Lock()
+
+    async def create(self, message: dict[str, Any]) -> dict[str, Any]:
+        async with self._lock:
+            self._store[message["id"]] = dict(message)
+        return message
+
+    async def list(self) -> list[dict[str, Any]]:
+        async with self._lock:
+            items = sorted(self._store.values(), key=lambda m: str(m.get("created_at", "")), reverse=True)
+            return [dict(i) for i in items]
+
+
+_msg_repo: MessageRepository | None = None
+_msg_repo_lock = asyncio.Lock()
+
+
+async def get_message_repository() -> MessageRepository:
+    global _msg_repo
+    if _msg_repo is not None:
+        return _msg_repo
+    async with _msg_repo_lock:
+        if _msg_repo is not None:
+            return _msg_repo
+        if await mongo_available():
+            _msg_repo = MongoMessageRepository()
+        else:
+            _msg_repo = MemoryMessageRepository()
+            logger.info("Using in-memory message store (MongoDB unavailable).")
+        return _msg_repo

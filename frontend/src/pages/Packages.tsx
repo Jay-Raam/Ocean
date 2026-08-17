@@ -1,7 +1,9 @@
 import { PageShell } from "../components/layout/PageShell";
 import { DefaultHeader } from "../components/sections/DefaultHeader";
 import { PackagesCards } from "../components/sections/PackagesSection";
+import { FaqSection } from "../components/sections/FaqSection";
 import { assets } from "../lib/assets";
+import { FAQ_ITEMS } from "../lib/content";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Packages() {
@@ -19,6 +21,7 @@ export function Packages() {
         extraClass="section-packages-header"
       />
       <PackagesCards />
+      <FaqSection items={FAQ_ITEMS} title="Packages & booking" eyebrow="Good to know" bg="white" />
     </PageShell>
   );
 }

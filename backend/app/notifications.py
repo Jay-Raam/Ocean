@@ -13,9 +13,10 @@ from email.message import EmailMessage
 from email.utils import formataddr
 
 import httpx
+from pydantic import BaseModel
 
 from .config import get_settings
-from .models import Booking
+from .models import Booking, ContactMessage
 
 logger = logging.getLogger(__name__)
 
@@ -175,14 +176,15 @@ def send_email_sync(booking: Booking) -> None:
     logger.info("Booking email delivered for %s", booking.id)
 
 
-async def send_webhook(booking: Booking) -> None:
+async def send_webhook(payload: BaseModel) -> None:
+    """POST the payload (booking or contact message) to WEBHOOK_URL."""
     settings = get_settings()
     if not settings.webhook_url:
         return
     async with httpx.AsyncClient(timeout=10) as client:
-        resp = await client.post(settings.webhook_url, json=booking.model_dump(mode="json"))
+        resp = await client.post(settings.webhook_url, json=payload.model_dump(mode="json"))
         resp.raise_for_status()
-    logger.info("Webhook delivered for booking %s", booking.id)
+    logger.info("Webhook delivered for %s", payload.id)
 
 
 async def notify_booking_created(booking: Booking) -> None:
@@ -199,3 +201,85 @@ async def notify_booking_created(booking: Booking) -> None:
     for result in results:
         if isinstance(result, Exception):
             logger.warning("Notification failed: %s", result)
+
+
+# ---------------------------------------------------------------- contact messages
+
+
+def message_summary_text(message: ContactMessage) -> str:
+    """Plain-text version of a contact form submission."""
+    return "\n".join(
+        [
+            f"New contact message #{message.id[:8]}",
+            "",
+            f"From    : {message.name} <{message.email}>",
+            f"Subject : {message.subject}",
+            "",
+            message.message,
+        ]
+    )
+
+
+def message_summary_html(message: ContactMessage) -> str:
+    """HTML version for email clients."""
+    esc = html.escape
+    return f"""\
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto">
+  <div style="background:#1d5a45;border-radius:10px 10px 0 0;padding:18px 24px">
+    <span style="color:#fff;font-size:17px;font-weight:bold">Ocean Resort — Contact message #{esc(message.id[:8])}</span>
+  </div>
+  <div style="border:1px solid #e5e7eb;border-top:none;border-radius:0 0 10px 10px;padding:20px 24px;color:#111827">
+    <table style="border-collapse:collapse;font-size:13px;width:100%">
+      <tr><td style="padding:6px 14px 6px 0;color:#6b7280;white-space:nowrap;vertical-align:top">From</td><td style="padding:6px 0;color:#111827;font-weight:600">{esc(message.name)} &lt;{esc(message.email)}&gt;</td></tr>
+      <tr><td style="padding:6px 14px 6px 0;color:#6b7280;white-space:nowrap;vertical-align:top">Subject</td><td style="padding:6px 0;color:#111827;font-weight:600">{esc(message.subject)}</td></tr>
+    </table>
+    <p style="margin:18px 0 6px;font-size:13px;font-weight:bold;color:#374151">Message</p>
+    <p style="margin:0;font-size:13px;line-height:1.6;color:#374151;white-space:pre-wrap">{esc(message.message)}</p>
+  </div>
+</div>"""
+
+
+def _build_message_email(message: ContactMessage) -> EmailMessage:
+    settings = get_settings()
+    recipients = [
+        r.strip() for r in (settings.mail_to or settings.mail_from or "").split(",") if r.strip()
+    ]
+    msg = EmailMessage()
+    msg["Subject"] = f"New contact message — {message.subject}"
+    if settings.mail_from:
+        msg["From"] = formataddr(("Ocean Resort", settings.mail_from))
+    msg["To"] = ", ".join(recipients)
+    msg["Reply-To"] = f"{message.name} <{message.email}>"
+    msg.set_content(message_summary_text(message))
+    msg.add_alternative(message_summary_html(message), subtype="html")
+    return msg
+
+
+def send_message_email_sync(message: ContactMessage) -> None:
+    """Blocking SMTP send (run via asyncio.to_thread). No-op when SMTP unset."""
+    settings = get_settings()
+    if not settings.smtp_host or not settings.mail_from:
+        return
+    msg = _build_message_email(message)
+    with smtplib.SMTP(settings.smtp_host, settings.smtp_port, timeout=15) as smtp:
+        if settings.smtp_user:
+            smtp.starttls()
+            smtp.login(settings.smtp_user, settings.smtp_password or "")
+        smtp.send_message(msg)
+    logger.info("Contact message email delivered for %s", message.id)
+
+
+async def notify_message_created(message: ContactMessage) -> None:
+    """Deliver a contact message to the configured channels; never fatal."""
+    settings = get_settings()
+    tasks: list[asyncio.Task] = []
+    if settings.webhook_url:
+        tasks.append(asyncio.create_task(send_webhook(message)))
+    if settings.smtp_host and settings.mail_from:
+        tasks.append(asyncio.to_thread(send_message_email_sync, message))
+    if not tasks:
+        return
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    for result in results:
+        if isinstance(result, Exception):
+            logger.warning("Message notification failed: %s", result)

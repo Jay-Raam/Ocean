@@ -6,6 +6,7 @@ import { HomeIntro } from "../components/sections/HomeIntro";
 import { StaySlider } from "../components/sections/StaySlider";
 import { ImageSplit } from "../components/sections/ImageSplit";
 import { PackagesIntro, PackagesCards } from "../components/sections/PackagesSection";
+import { TestimonialsSection } from "../components/sections/TestimonialsSection";
 import { Footer } from "../components/layout/Footer";
 import { assets } from "../lib/assets";
 import { useApp } from "../lib/AppContext";
@@ -78,6 +79,7 @@ export function Home() {
           />
           <PackagesIntro />
           <PackagesCards />
+          <TestimonialsSection />
           <Footer footerImage={assets.footers.home} />
         </div>
       </main>

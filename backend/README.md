@@ -79,6 +79,7 @@ the API container talks to the bundled instances.
 | POST   | `/bookings`           | Create a booking request (201)                     |
 | GET    | `/bookings`           | List all bookings                                  |
 | GET    | `/bookings/{id}`      | Get one booking                                    |
+| POST   | `/messages`           | Store a contact form message + notify the team (201)|
 | GET    | `/villas`             | Villa catalog (cached)                             |
 | GET    | `/rates?checkin&checkout` | Rates per villa for a date range (cached)      |
 | GET    | `/promos?all=`        | Active promos (`?all=true` includes disabled)      |
@@ -116,17 +117,22 @@ app/
 ├── models.py          # Pydantic request/response models
 ├── catalog.py         # Static villa catalog
 ├── promos.py          # Promo code repository + business rules
-├── services.py        # Booking creation, pricing, validation
+├── services.py        # Booking creation, pricing, validation, contact messages
 ├── repositories.py    # Storage layer (Mongo ↔ in-memory fallback)
 ├── db.py              # Motor client + health checks
 ├── cache.py           # Redis ↔ in-memory fallback cache
-├── notifications.py   # SMTP email + webhook delivery
+├── notifications.py   # SMTP email + webhook delivery (bookings + messages)
 ├── graphql.py         # Strawberry schema (queries + mutation)
 └── routers/
-    ├── api.py         # REST: bookings, villas, rates
+    ├── api.py         # REST: bookings, villas, rates, messages
     └── promos.py      # REST: promo endpoints
 tests/                 # pytest suite
 ```
+
+The `POST /messages` endpoint stores contact-form submissions (name, email,
+subject, message) and delivers them through the same notification channels
+as bookings — email to `MAIL_TO` (with `Reply-To` set to the sender) and the
+configured `WEBHOOK_URL`. It is used by the frontend's `/contact` page.
 
 ## Related
 

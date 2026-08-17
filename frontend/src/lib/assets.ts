@@ -181,6 +181,45 @@ export const assets = {
     blog: img("fa44f1d9af-1785938969__navigation-img-3-720x1440-crop-q72.webp"),
   },
 
+  /** New editorial pages (about / contact / gallery / celebrate / reviews) */
+  pages: {
+    about: {
+      header: img("kien-the-ocean-118-2880x-q72.webp"),
+      intro: [
+        img("012b8d2501-1785938915__lobbyview-540x720-crop-q72.webp"),
+        img("f0de12a143-1785938917__wayankulit-540x720-crop-q72.webp"),
+        img("90793d0953-1785938916__restaurantocean1-540x720-crop-q72.webp"),
+      ],
+      smallImage: img("d076611b2a-1785938913__kien-the-ocean-228-1080x1440-crop-q72.webp"),
+      bigImage: img("c240ba5e12-1785938921__kien-the-ocean-1-2880x-q72.webp"),
+    },
+    contact: {
+      header: img("16935f89f6-1785938940__sunsetsceneedit-vignettetight-2880x-q72.webp"),
+      beach: img("black-sand-beach-2-810x1080-crop-q72.webp"),
+      smallImage: img("f093e68055-1785938965__resort-spa-in-bali-01-810x1080-crop-q72.webp"),
+    },
+    celebrate: {
+      header: img("wayankulit-mw-2880x-q72.webp"),
+      images: [
+        img("092ec6635c-1785938958__temburgiaflower-810x1080-crop-q72.webp"),
+        img("bcb8635e31-1785938936__eveningdrink2x-540x720-crop-q72.webp"),
+        img("mistypool-810x1080-crop-q72.webp"),
+      ],
+      bigImage: img("5934108075-1785938969__kien-the-ocean-348-2880x-q72.webp"),
+      couples: img("d235813305-1785938942__kien-the-ocean-228-810x1080-crop-q72.webp"),
+    },
+    gallery: {
+      bigImage: img("1f6141a387-1785938914__kien_theocean-6.jpg"),
+    },
+    reviews: {
+      bigImage: img("e7ad9e43ad-1785938971__meta-theocean-860x540-crop-q72.webp"),
+    },
+    footers: {
+      default: img("9a89755429-1785938954__footer-default-1920x480-crop-q72.webp"),
+      celebrate: img("8b954c387e-1785938927__footer-gate-1920x480-crop-q72.webp"),
+    },
+  },
+
   credits: [
     img("288fcef42e-1785938954__image-credits-1.jpg"),
     img("b168ef538f-1785938970__image-credits-2.jpg"),

@@ -45,6 +45,24 @@ export function Footer({ footerImage }: FooterProps) {
                 </li>
               ))}
             </ul>
+            <div className="col-row col-row-eyebrow col-row-explore-eyebrow">
+              <span className="eyebrow small">Explore</span>
+            </div>
+            <ul className="col-row col-row-links-explore">
+              {[
+                { label: "About", to: "/about" },
+                { label: "Gallery", to: "/gallery" },
+                { label: "Celebrate", to: "/celebrate" },
+                { label: "Reviews", to: "/reviews" },
+                { label: "Contact", to: "/contact" },
+              ].map((l) => (
+                <li className="link" key={l.to}>
+                  <RouterLink className="link-click" to={l.to}>
+                    <span>{l.label}</span>
+                  </RouterLink>
+                </li>
+              ))}
+            </ul>
           </nav>
           <div className="col col-links-secondary">
             <div className="border-left" />

@@ -70,13 +70,32 @@ src/
 │   ├── hero/          # Home hero with loader phases
 │   ├── layout/        # Header, Footer, FloatingElements, PageShell, Loader
 │   ├── motion/        # Reveal / page-transition helpers
-│   ├── sections/      # Home & page section components (ImageSplit, MenuSection, …)
+│   ├── sections/      # Section components (ImageSplit, MenuSection, FaqSection,
+│   │                  #   TestimonialsSection, GallerySection, ContactSection, …)
 │   └── ui/            # Button, Link, IconLink, ParallaxImage, CustomCursor, icons
 ├── hooks/             # useLenis, useScrollState, usePageMeta, useMediaQuery, …
 ├── lib/               # content, blog, assets, brand, api (REST), graphql, AppContext
-├── pages/             # One file per route (Stay, Dining, Relax, Discover, Packages, Blog, …)
+├── pages/             # One file per route (Stay, Dining, Relax, Discover, Packages, Blog,
+│                      #   About, Contact, Gallery, Celebrate, Reviews, …)
 └── styles/            # globals, components, sections, booking (design system)
 ```
+
+### Editorial pages
+
+Beyond the core stay/dining/spa/discover/blog routes, the site ships five
+editorial pages built from the same section kit:
+
+| Route       | Purpose                                                        |
+| ----------- | -------------------------------------------------------------- |
+| `/about`    | The story, philosophy and gardens of Ocean                     |
+| `/contact`  | Map, getting-here info and an inquiry form (`POST /messages`)  |
+| `/gallery`  | Photo grid with a keyboard-navigable lightbox                  |
+| `/celebrate`| Weddings & celebrations with three tailored packages           |
+| `/reviews`  | Guest reviews grid; the Home page carries the review carousel  |
+
+The FAQ accordion (`FaqSection`) is reused on Stay, Packages and Contact;
+`TestimonialsSection` is the Home-page carousel built in the same swiper
+vocabulary as the double slider.
 
 ### Booking engine
 

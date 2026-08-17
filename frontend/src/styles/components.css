@@ -841,6 +841,18 @@ main {
   padding-top: 1.5em;
 }
 
+/* Footer "Explore" group (About / Gallery / Celebrate / Reviews / Contact) */
+
+.section-footer .col-row-explore-eyebrow {
+  padding-top: calc(var(--gap) * 1.5);
+}
+
+.section-footer .col-row-links-explore {
+  display: flex;
+  flex-direction: column;
+  gap: 0.33em;
+}
+
 /* Row Credits */
 
 .section-footer .row-credits {

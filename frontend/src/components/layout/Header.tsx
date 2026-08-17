@@ -209,6 +209,26 @@ function SideNav() {
               ))}
             </ul>
           </div>
+          <div className="col col-link-explore">
+            <div className="col-row col-row-eyebrow">
+              <span className="eyebrow small">Explore</span>
+            </div>
+            <ul className="col-row col-row-links">
+              {[
+                { label: "About", to: "/about" },
+                { label: "Gallery", to: "/gallery" },
+                { label: "Celebrate", to: "/celebrate" },
+                { label: "Reviews", to: "/reviews" },
+                { label: "Contact", to: "/contact" },
+              ].map((l) => (
+                <li className="link" key={l.to}>
+                  <RouterLink className="link-click" to={l.to} onClick={() => setNavigationOpen(false)}>
+                    <span>{l.label}</span>
+                  </RouterLink>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="row row-rating">
           <div className="border-top" />

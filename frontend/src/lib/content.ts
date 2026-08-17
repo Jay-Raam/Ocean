@@ -501,6 +501,227 @@ export const PACKAGE_DETAILS: PackageDetail[] = [
 
 /* ------------------------- Blog ------------------------- */
 
+/* ------------------------- Testimonials ------------------------- */
+
+export interface Testimonial {
+  quote: string;
+  name: string;
+  origin: string;
+  stay?: string;
+}
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    quote:
+      "From the moment we arrived we felt like guests in a friend's home — the gardens, the scent of cloves, the sound of the sea. We came for two nights and stayed for five.",
+    name: "Amara & Rohan",
+    origin: "Mumbai, India",
+    stay: "Luxury Pool Villa",
+  },
+  {
+    quote:
+      "The dolphin safari at dawn was the most moving thing we did in Bali. Coming home to a villa with a private pool and a sunset cocktail made it perfect.",
+    name: "Claire Dubois",
+    origin: "Lyon, France",
+    stay: "Pool Villa",
+  },
+  {
+    quote:
+      "Hard to find, hard to leave — the reviews were right. The restaurant alone is worth the journey; the spa put us in a trance.",
+    name: "James & Sophie Carter",
+    origin: "London, UK",
+    stay: "Ocean & Dolphins package",
+  },
+  {
+    quote:
+      "We got married in the gardens at sunset. The team made it feel effortless, intimate and completely ours. We will never forget it.",
+    name: "Priya & Arjun",
+    origin: "Bengaluru, India",
+    stay: "Wedding in the gardens",
+  },
+  {
+    quote:
+      "Fifteen villas, one beautiful garden, and a calm you don't find in the big resorts. Our two-bedroom pool villa was perfect for our family.",
+    name: "Thomas & Family",
+    origin: "Berlin, Germany",
+    stay: "Two Bedroom Pool Villa",
+  },
+  {
+    quote:
+      "The best food we ate in Bali, served by the pool under the stars. The daily Balinese three-course menu was a highlight every single evening.",
+    name: "Elena & Marco",
+    origin: "Milan, Italy",
+    stay: "Ocean Romance package",
+  },
+  {
+    quote:
+      "Yoga at sunrise, a Javanese Mandi Lulur treatment, and a book on the veranda. Ocean is a place to simply be still.",
+    name: "Sarah Nguyen",
+    origin: "Singapore",
+    stay: "Ocean Spa Bliss package",
+  },
+  {
+    quote:
+      "My partner proposed in the pool villa at sunset. The team arranged everything — candles, flowers, dinner for two. We will be back for our anniversary.",
+    name: "Hannah & Grace",
+    origin: "Sydney, Australia",
+    stay: "Luxury Pool Villa",
+  },
+  {
+    quote:
+      "From the airport transfer to the farewell, everything was personal and warm. The hidden waterfalls nearby are as magical as everyone says.",
+    name: "Kenji Watanabe",
+    origin: "Tokyo, Japan",
+    stay: "Garden Villa",
+  },
+  {
+    quote:
+      "We've stayed in luxury resorts all over Asia. Ocean is different: small, soulful, and impossibly beautiful.",
+    name: "David & Nina",
+    origin: "New York, USA",
+    stay: "Pool Villa",
+  },
+];
+
+/* ------------------------- FAQ ------------------------- */
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: "How do I get to Ocean from the airport?",
+    answer:
+      "Ngurah Rai International Airport (DPS) is a scenic 2.5–3 hour drive from Ocean. We arrange private transfers for all guests, and every package includes a return transfer to any point in Bali. Ask our team when booking and we will have your driver waiting.",
+  },
+  {
+    question: "What are the check-in and check-out times?",
+    answer:
+      "Check-in is from 14:00 and check-out is at 12:00. Early arrivals and late departures are welcome whenever the villa is free — just let us know your plans and we will do our best to accommodate.",
+  },
+  {
+    question: "Are children welcome at Ocean?",
+    answer:
+      "Yes — Ocean is a wonderful place for families. The Two Bedroom Pool Villa sleeps four, the spa offers children's treatments, and Lovina's calm black-sand beach is a short stroll away.",
+  },
+  {
+    question: "Which currencies and payment methods do you accept?",
+    answer:
+      "Rates are quoted in Indonesian Rupiah (IDR) and Indian Rupees (INR) across the site. Settle your bill by card at the resort; the deposit to confirm a booking is taken by card at the end of the reservation.",
+  },
+  {
+    question: "What are the benefits of booking directly?",
+    answer:
+      "Booking directly with Ocean guarantees our best available rate, a complimentary daily sundowner cocktail, and one hour of massage per stay. Ask about current promo codes before you reserve.",
+  },
+  {
+    question: "Is the restaurant open to non-guests?",
+    answer:
+      "Absolutely — our prize-winning bistro and the Ocean Bar welcome outside guests. Dinner is served by the poolside most evenings; reservations are recommended, especially at sunset.",
+  },
+  {
+    question: "Do I need to book spa treatments in advance?",
+    answer:
+      "Treatments can be booked on arrival, but we recommend reserving in advance — especially for the signature rituals and couples' treatments — so we can prepare oils and therapists for you.",
+  },
+  {
+    question: "Can you arrange dolphin trips and excursions?",
+    answer:
+      "Our reception arranges dawn dolphin safaris, waterfall treks, diving and snorkelling trips, and temple visits with trusted local guides. The Ocean & Dolphins package includes the dolphin safari.",
+  },
+  {
+    question: "Is there Wi-Fi at the resort?",
+    answer:
+      "Yes — fast, complimentary Wi-Fi covers the villas, restaurant and pool areas, so you can stay connected when the sea view lets you look away.",
+  },
+  {
+    question: "What is the cancellation policy?",
+    answer:
+      "Cancellation terms depend on the rate you book — some rates are flexible, some are non-refundable. Your rate details are shown during booking, and our team is always happy to clarify before you confirm.",
+  },
+];
+
+/* ------------------------- Gallery ------------------------- */
+
+export interface GalleryItem {
+  src: string;
+  alt: string;
+  category: string;
+}
+
+export const GALLERY_ITEMS: GalleryItem[] = [
+  { src: "/assets/images/09db8cff11-1785938918__garden-night-edit-copy-1920x1440-crop-q72.webp", alt: "The gardens at dusk", category: "Villas" },
+  { src: "/assets/images/862143d3cc-1785938927__walls-1920x1440-crop-q72.webp", alt: "A pool villa at Ocean", category: "Villas" },
+  { src: "/assets/images/f399f5c7d5-1785938928__poollookout2swallows-1920x1440-crop-q72.webp", alt: "Sunset from the pool", category: "Villas" },
+  { src: "/assets/images/bb83d51ce2-1785938932__masterpoolvillabalex-1920x1440-crop-q72.webp", alt: "Two Bedroom Pool Villa", category: "Villas" },
+  { src: "/assets/images/71a9790fa4-1785938939__poolsidetable-2880x-q72.webp", alt: "Dinner by the pool", category: "Dining" },
+  { src: "/assets/images/217f1cbc5b-1785938935__blacktable-1440x960-crop-q72.webp", alt: "The Ocean restaurant", category: "Dining" },
+  { src: "/assets/images/16935f89f6-1785938940__sunsetsceneedit-vignettetight-2880x-q72.webp", alt: "Sunset over the Bali sea", category: "Dining" },
+  { src: "/assets/images/4e6bbcb15b-1785938943__spabuildinggrey-2880x-q72.webp", alt: "The Ocean spa", category: "Spa" },
+  { src: "/assets/images/4512c71ebc-1785938943__spafountains-810x1080-crop-q72.webp", alt: "Spa fountains", category: "Spa" },
+  { src: "/assets/images/handaragates2-2880x-q72.webp", alt: "The Handara gates", category: "Discover" },
+  { src: "/assets/images/darkdolphins-2880x-q72.webp", alt: "Dolphins of Lovina at dawn", category: "Discover" },
+  { src: "/assets/images/kien-the-ocean-118-2880x-q72.webp", alt: "North Bali coastline", category: "Discover" },
+  { src: "/assets/images/wayankulit-mw-2880x-q72.webp", alt: "Celebrations at Ocean", category: "Celebrate" },
+  { src: "/assets/images/kien-the-ocean-348-2880x-q72.webp", alt: "The road to Ocean", category: "Discover" },
+  { src: "/assets/images/c240ba5e12-1785938921__kien-the-ocean-1-2880x-q72.webp", alt: "The gardens at Ocean", category: "Villas" },
+  { src: "/assets/images/1f6141a387-1785938914__kien_theocean-6.jpg", alt: "Ocean at night", category: "Villas" },
+];
+
+/* ------------------------- Celebrate packages ------------------------- */
+
+export interface CelebratePackage {
+  title: string;
+  eyebrow: string;
+  text: string;
+  includes: string[];
+  image: string;
+}
+
+export const CELEBRATE_PACKAGES: CelebratePackage[] = [
+  {
+    title: "Ocean Vows",
+    eyebrow: "Wedding in the gardens",
+    text: "A sunset ceremony in our gardens with dinner for up to thirty guests.",
+    includes: [
+      "Sunset ceremony in the gardens",
+      "Bali blessing & musicians",
+      "Dinner under the stars for up to 30 guests",
+      "Bridal suite night for the couple",
+      "1x 120 min. couple massage",
+    ],
+    image: "/assets/images/092ec6635c-1785938958__temburgiaflower-810x1080-crop-q72.webp",
+  },
+  {
+    title: "Vow Renewal",
+    eyebrow: "Say it again, by the sea",
+    text: "A quiet ceremony to renew your promises, with a celebration dinner for two.",
+    includes: [
+      "Private ceremony at sunset",
+      "Flowers & candlelit decoration",
+      "3-course dinner for two by the pool",
+      "1x 120 min. couple massage",
+      "Sunset cocktails for two",
+    ],
+    image: "/assets/images/bcb8635e31-1785938936__eveningdrink2x-810x1080-crop-q72.webp",
+  },
+  {
+    title: "Intimate Elopement",
+    eyebrow: "Just the two of you",
+    text: "Everything you need for a private, effortless ceremony — just bring each other.",
+    includes: [
+      "Private ceremony in the gardens",
+      "Bali blessing",
+      "Dinner for two under the stars",
+      "Flowers, photography & videography",
+      "1x 120 min. couple massage",
+    ],
+    image: "/assets/images/mistypool-810x1080-crop-q72.webp",
+  },
+];
+
 export const BLOG_CARDS = [
   { title: "Discovering Lovina, Bali and Why It's a Tranquil Paradise for Travelers", image: "/assets/images/85672d7b95-1785938969__the-ocean-resort-seo-dec-c02-1-1200x628-810x1080-crop-q72.webp", date: "24 July 2025", href: "/blog/lovina-bali" },
   { title: "Experience Tranquility At the Ultimate Pool Villa in Lovina", image: "/assets/images/99cd0a0b83-1785938968__the-ocean-resort-seo-nov-c02-1-1200x628-1-810x1080-crop-q72.webp", date: "14 July 2025", href: "/blog/pool-villa-in-lovina" },

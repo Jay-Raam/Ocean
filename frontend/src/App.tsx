@@ -22,6 +22,11 @@ const Packages = lazy(() => import("./pages/Packages").then((m) => ({ default: m
 const PackageDetail = lazy(() => import("./pages/PackageDetail").then((m) => ({ default: m.PackageDetail })));
 const Blog = lazy(() => import("./pages/Blog").then((m) => ({ default: m.Blog })));
 const BlogPost = lazy(() => import("./pages/BlogPost").then((m) => ({ default: m.BlogPost })));
+const About = lazy(() => import("./pages/About").then((m) => ({ default: m.About })));
+const Contact = lazy(() => import("./pages/Contact").then((m) => ({ default: m.Contact })));
+const Gallery = lazy(() => import("./pages/Gallery").then((m) => ({ default: m.Gallery })));
+const Celebrate = lazy(() => import("./pages/Celebrate").then((m) => ({ default: m.Celebrate })));
+const Reviews = lazy(() => import("./pages/Reviews").then((m) => ({ default: m.Reviews })));
 const NotFound = lazy(() => import("./pages/NotFound").then((m) => ({ default: m.NotFound })));
 
 /**
@@ -152,6 +157,11 @@ function AppRoot() {
         <Route path="/packages/damai-spa-bliss" element={<Navigate to="/packages/ocean-spa-bliss" replace />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/celebrate" element={<Celebrate />} />
+        <Route path="/reviews" element={<Reviews />} />
         <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

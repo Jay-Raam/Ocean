@@ -1,4 +1,4 @@
-"""REST API — /api/v1/bookings, /api/v1/villas, /api/v1/rates."""
+"""REST API — /api/v1/bookings, /api/v1/villas, /api/v1/rates, /api/v1/messages."""
 
 from datetime import date
 
@@ -6,8 +6,14 @@ from fastapi import APIRouter, HTTPException
 
 from ..cache import cache_get_json, cache_set_json
 from ..catalog import VILLAS
-from ..models import Booking, BookingCreate
-from ..services import PromoCodeError, create_booking, get_booking, list_bookings
+from ..models import Booking, BookingCreate, ContactMessage, ContactMessageCreate
+from ..services import (
+    PromoCodeError,
+    create_booking,
+    create_contact_message,
+    get_booking,
+    list_bookings,
+)
 
 router = APIRouter()
 
@@ -43,6 +49,12 @@ async def api_villas():
         return cached
     await cache_set_json(cache_key, VILLAS)
     return VILLAS
+
+
+@router.post("/messages", response_model=ContactMessage, status_code=201)
+async def api_create_message(payload: ContactMessageCreate) -> ContactMessage:
+    """Store a website contact/enquiry form submission (and notify the team)."""
+    return await create_contact_message(payload)
 
 
 @router.get("/rates")

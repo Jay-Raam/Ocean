@@ -1,11 +1,11 @@
-"""Booking service layer — validation, persistence and notifications."""
+"""Booking + contact-message service layer — validation, persistence, notifications."""
 
 from uuid import uuid4
 
-from .models import Booking, BookingCreate, PromoLine, compute_totals
-from .notifications import notify_booking_created
+from .models import Booking, BookingCreate, ContactMessage, ContactMessageCreate, PromoLine, compute_totals
+from .notifications import notify_booking_created, notify_message_created
 from .promos import get_promo
-from .repositories import get_booking_repository
+from .repositories import get_booking_repository, get_message_repository
 
 
 class PromoCodeError(ValueError):
@@ -85,5 +85,21 @@ async def list_bookings() -> list[Booking]:
     repo = await get_booking_repository()
     docs = await repo.list()
     return [Booking.model_validate(d) for d in docs]
+
+
+async def create_contact_message(payload: ContactMessageCreate) -> ContactMessage:
+    """Persist a website contact/enquiry form submission and fire notifications."""
+    message = ContactMessage(
+        id=uuid4().hex,
+        name=payload.name,
+        email=payload.email,
+        subject=payload.subject,
+        message=payload.message,
+        created_at=ContactMessage.now_utc(),
+    )
+    repo = await get_message_repository()
+    await repo.create(message.model_dump(mode="json"))
+    await notify_message_created(message)
+    return message
 
 
