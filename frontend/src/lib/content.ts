@@ -722,6 +722,279 @@ export const CELEBRATE_PACKAGES: CelebratePackage[] = [
   },
 ];
 
+/* ------------------------- Experiences ------------------------- */
+
+export interface Experience {
+  slug: string;
+  title: string;
+  category: string;
+  duration: string;
+  description: string;
+  image: string;
+}
+
+export const EXPERIENCE_CATEGORIES = [
+  { id: "adventure", label: "Adventure" },
+  { id: "culture", label: "Culture" },
+  { id: "wellness", label: "Wellness" },
+  { id: "nature", label: "Nature" },
+];
+
+export const EXPERIENCES: Experience[] = [
+  {
+    slug: "dolphin-safari",
+    title: "Dawn Dolphin Safari",
+    category: "adventure",
+    duration: "3 hours",
+    description: "Set out at dawn in a traditional Balinese outrigger to find pods of dolphins playing in Lovina Bay as the sun rises behind the volcanoes.",
+    image: assets.discover.cards[1].img,
+  },
+  {
+    slug: "waterfall-trek",
+    title: "Secret Waterfall Trek",
+    category: "nature",
+    duration: "Half day",
+    description: "Trek through tropical jungle to hidden waterfalls most tourists never find, with crystal-clear mountain pools perfect for swimming.",
+    image: assets.discover.cards[0].img,
+  },
+  {
+    slug: "cooking-class",
+    title: "Balinese Cooking Class",
+    category: "culture",
+    duration: "4 hours",
+    description: "Learn to prepare traditional Balinese dishes using fresh ingredients from our organic garden, guided by our head chef.",
+    image: assets.dining.wontons,
+  },
+  {
+    slug: "snorkelling-menjangan",
+    title: "Snorkelling at Menjangan",
+    category: "adventure",
+    duration: "Full day",
+    description: "Explore the spectacular coral reefs of Menjangan Island, a protected marine preserve with crystal-clear waters and vibrant sea life.",
+    image: assets.discover.cards[2].img,
+  },
+  {
+    slug: "sunrise-yoga",
+    title: "Sunrise Yoga",
+    category: "wellness",
+    duration: "90 min",
+    description: "Start your morning with a free Hatha or Vinyasa flow session in the gardens, led by our resident instructor every Monday and Thursday.",
+    image: assets.relax.kien215,
+  },
+  {
+    slug: "village-walk",
+    title: "Village Walk",
+    category: "culture",
+    duration: "2 hours",
+    description: "Stroll through the neighbouring villages, wave to the kids, visit a temple, and experience the joy of everyday Balinese life.",
+    image: assets.discover.smallImage,
+  },
+  {
+    slug: "golf-volcano",
+    title: "Golf in the Volcano",
+    category: "adventure",
+    duration: "Half day",
+    description: "Play a round at the Handara Golf Club, set inside the crater of a dormant volcano, surrounded by mountains and crater lakes.",
+    image: assets.discover.cards[3].img,
+  },
+  {
+    slug: "temple-visit",
+    title: "Temple Visit",
+    category: "culture",
+    duration: "Half day",
+    description: "Visit the sacred water temple of Ulun Danu on Lake Bratan and other iconic North Bali temples with a knowledgeable local guide.",
+    image: assets.discover.cards[4].img,
+  },
+];
+
+/* ------------------------- Sustainability ------------------------- */
+
+export interface SustainabilityPillar {
+  title: string;
+  eyebrow: string;
+  text: string;
+  image: string;
+}
+
+export const SUSTAINABILITY_PILLARS: SustainabilityPillar[] = [
+  {
+    title: "From Our Gardens",
+    eyebrow: "Organic & local",
+    text: "The vegetables on your plate come from our own organic gardens. We grow what we serve — herbs, greens, tropical fruits — picked fresh each morning for the kitchen. No imports, no shortcuts.",
+    image: assets.dining.kien304,
+  },
+  {
+    title: "Our Village",
+    eyebrow: "Community first",
+    text: "Ocean employs people from the surrounding villages. Our therapists, gardeners, cooks and guides are our neighbours. When you stay with us, you support the community that makes North Bali special.",
+    image: assets.discover.smallImage,
+  },
+  {
+    title: "Ocean & Conservation",
+    eyebrow: "Protecting the sea",
+    text: "The Bali Sea is our backyard. We work with local fishermen and marine conservation groups to protect the reefs and marine life around Lovina, ensuring the ocean stays vibrant for generations.",
+    image: assets.discover.cards[2].img,
+  },
+  {
+    title: "Zero Waste Kitchen",
+    eyebrow: "Close the loop",
+    text: "Our kitchen composts organic waste back into the garden. We use virgin coconut oil pressed in our village, and our spa products are made from natural, locally sourced ingredients.",
+    image: assets.dining.settingTables,
+  },
+];
+
+/* ------------------------- Offers ------------------------- */
+
+export interface Offer {
+  title: string;
+  eyebrow: string;
+  text: string;
+  badge?: string;
+  image: string;
+  includes: string[];
+  validUntil: string;
+  code?: string;
+}
+
+export const OFFERS: Offer[] = [
+  {
+    title: "Rainy Season Escape",
+    eyebrow: "Limited time — Save 25%",
+    text: "North Bali's green season is its most beautiful. Lush gardens, dramatic sunsets, and fewer visitors. Book 3+ nights and save 25% on any villa.",
+    badge: "25% OFF",
+    image: assets.stay.villas.luxury.main,
+    includes: [
+      "3+ nights in the villa of your choice",
+      "25% off the best available rate",
+      "Daily breakfast for two",
+      "Complimentary sunset cocktail",
+    ],
+    validUntil: "30 September 2026",
+    code: "GREEN25",
+  },
+  {
+    title: "Early Bird 2027",
+    eyebrow: "Book early, save more",
+    text: "Plan ahead for the new year. Book your 2027 stay before December and enjoy our lowest rates, plus a complimentary massage.",
+    badge: "BEST RATE",
+    image: assets.stay.villas.pool.main,
+    includes: [
+      "Any villa, any dates in 2027",
+      "Lowest available rate guaranteed",
+      "1x 60 min. massage per person",
+      "Free cancellation until 14 days before arrival",
+    ],
+    validUntil: "31 December 2026",
+    code: "EARLY27",
+  },
+  {
+    title: "Stay 5, Pay 4",
+    eyebrow: "The longer you stay, the more you save",
+    text: "Book five nights and only pay for four. More time by the pool, more sunsets, more of the good life — at the price of a short break.",
+    image: assets.stay.villas.luxury.main,
+    includes: [
+      "5 nights in the villa of your choice",
+      "Pay for 4 nights only",
+      "Daily breakfast for two",
+      "1x 60 min. massage per person",
+    ],
+    validUntil: "31 March 2027",
+    code: "STAY5PAY4",
+  },
+];
+
+/* ------------------------- Travel guide ------------------------- */
+
+export interface TravelGuideItem {
+  title: string;
+  text: string;
+}
+
+export const TRAVEL_GUIDE_GETTING_HERE: TravelGuideItem[] = [
+  {
+    title: "By air",
+    text: "Fly into Ngurah Rai International Airport (DPS) in southern Bali. Most major airlines serve the airport, with connections across Asia, Australia, Europe and the Middle East.",
+  },
+  {
+    title: "Airport transfer",
+    text: "The drive from the airport to Ocean takes 2.5–3 hours through rice terraces and volcanic scenery. Every package includes a private return transfer. We can also arrange one-off transfers — just ask when you book.",
+  },
+  {
+    title: "By car from other parts of Bali",
+    text: "If you are already in Bali, we can arrange a driver from Ubud (3 hours), Uluwatu (4 hours), Seminyak (3.5 hours) or anywhere else on the island.",
+  },
+];
+
+export const TRAVEL_GUIDE_SEASONS: TravelGuideItem[] = [
+  {
+    title: "Dry season (April – October)",
+    text: "The busiest and sunniest months. Warm days, cool evenings, and low humidity. Perfect for beach days, diving and outdoor dining. Book well in advance.",
+  },
+  {
+    title: "Green season (November – March)",
+    text: "Brief afternoon showers keep the gardens lush and the air fresh. Fewer visitors, lower rates, and dramatic sunsets. The mornings are usually clear — ideal for waterfall treks and dolphin safaris.",
+  },
+];
+
+export const TRAVEL_GUIDE_PRACTICAL: TravelGuideItem[] = [
+  {
+    title: "Currency",
+    text: "The local currency is Indonesian Rupiah (IDR). We also quote prices in Indian Rupees (INR). ATMs are available in Lovina, and we accept card payments at the resort.",
+  },
+  {
+    title: "What to pack",
+    text: "Light, breathable clothing for the tropical climate. A light rain jacket for the green season. Swimwear, sunscreen and a hat for the pool and beach. Comfortable shoes for temple visits and waterfall treks.",
+  },
+  {
+    title: "Tipping",
+    text: "Tipping is not expected but always appreciated. A small gratuity for spa therapists, drivers and restaurant staff is a kind way to say thank you.",
+  },
+  {
+    title: "Health & safety",
+    text: "Drink bottled water (provided in your villa). Lovina is a safe and relaxed area. Our reception can help with any medical needs — the nearest clinic is a short drive away.",
+  },
+  {
+    title: "Connectivity",
+    text: "Fast, complimentary Wi-Fi covers the villas, restaurant and pool areas. A local SIM card is inexpensive and available at the airport or in Lovina.",
+  },
+];
+
+/* ------------------------- Gift vouchers ------------------------- */
+
+export interface GiftVoucher {
+  title: string;
+  eyebrow: string;
+  text: string;
+  image: string;
+}
+
+export const GIFT_VOUCHERS: GiftVoucher[] = [
+  {
+    title: "A Night in Paradise",
+    eyebrow: "From $250",
+    text: "One night in a Garden Villa with breakfast for two. The simplest, most thoughtful gift — a night at Ocean.",
+    image: assets.stay.villas.garden.main,
+  },
+  {
+    title: "Spa Ritual for Two",
+    eyebrow: "From $180",
+    text: "A 120-minute couple massage at the Ocean Spa, followed by herbal tea and time by the fountains.",
+    image: assets.relax.split,
+  },
+  {
+    title: "Dinner Under the Stars",
+    eyebrow: "From $120",
+    text: "A three-course dinner for two at the Ocean restaurant, served by the poolside with a bottle of wine.",
+    image: assets.dining.barImage,
+  },
+  {
+    title: "The Full Ocean Experience",
+    eyebrow: "From $600",
+    text: "Two nights in a Pool Villa, daily breakfast, a dolphin safari, a couple massage and a three-course dinner. The ultimate gift.",
+    image: assets.stay.villas.pool.main,
+  },
+];
+
 export const BLOG_CARDS = [
   { title: "Discovering Lovina, Bali and Why It's a Tranquil Paradise for Travelers", image: "/assets/images/85672d7b95-1785938969__the-ocean-resort-seo-dec-c02-1-1200x628-810x1080-crop-q72.webp", date: "24 July 2025", href: "/blog/lovina-bali" },
   { title: "Experience Tranquility At the Ultimate Pool Villa in Lovina", image: "/assets/images/99cd0a0b83-1785938968__the-ocean-resort-seo-nov-c02-1-1200x628-1-810x1080-crop-q72.webp", date: "14 July 2025", href: "/blog/pool-villa-in-lovina" },

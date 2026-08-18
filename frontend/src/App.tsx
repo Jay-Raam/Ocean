@@ -27,6 +27,11 @@ const Contact = lazy(() => import("./pages/Contact").then((m) => ({ default: m.C
 const Gallery = lazy(() => import("./pages/Gallery").then((m) => ({ default: m.Gallery })));
 const Celebrate = lazy(() => import("./pages/Celebrate").then((m) => ({ default: m.Celebrate })));
 const Reviews = lazy(() => import("./pages/Reviews").then((m) => ({ default: m.Reviews })));
+const Experiences = lazy(() => import("./pages/Experiences").then((m) => ({ default: m.Experiences })));
+const Sustainability = lazy(() => import("./pages/Sustainability").then((m) => ({ default: m.Sustainability })));
+const Offers = lazy(() => import("./pages/Offers").then((m) => ({ default: m.Offers })));
+const TravelGuide = lazy(() => import("./pages/TravelGuide").then((m) => ({ default: m.TravelGuide })));
+const GiftVouchers = lazy(() => import("./pages/GiftVouchers").then((m) => ({ default: m.GiftVouchers })));
 const NotFound = lazy(() => import("./pages/NotFound").then((m) => ({ default: m.NotFound })));
 
 /**
@@ -160,9 +165,13 @@ function AppRoot() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/celebrate" element={<Celebrate />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/celebrate" element={<Celebrate />} />          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/experiences" element={<Experiences />} />
+          <Route path="/sustainability" element={<Sustainability />} />
+          <Route path="/offers" element={<Offers />} />
+          <Route path="/travel-guide" element={<TravelGuide />} />
+          <Route path="/gift-vouchers" element={<GiftVouchers />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <FloatingElements />

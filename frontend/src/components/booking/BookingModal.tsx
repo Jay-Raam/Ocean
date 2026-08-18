@@ -988,8 +988,8 @@ export function BookingModal() {
   );
 
   const [step, setStep] = useState(0);
-  const [checkin, setCheckin] = useState("2026-09-29");
-  const [checkout, setCheckout] = useState("2026-09-30");
+  const [checkin, setCheckin] = useState("");
+  const [checkout, setCheckout] = useState("");
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [baby, setBaby] = useState(0);
@@ -1011,8 +1011,8 @@ export function BookingModal() {
   useEffect(() => {
     if (bookingOpen) {
       setStep(0);
-      setCheckin("2026-09-29");
-      setCheckout("2026-09-30");
+      setCheckin("");
+      setCheckout("");
       setAdults(2);
       setChildren(0);
       setBaby(0);

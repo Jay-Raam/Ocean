@@ -216,8 +216,13 @@ function SideNav() {
             <ul className="col-row col-row-links">
               {[
                 { label: "About", to: "/about" },
+                { label: "Experiences", to: "/experiences" },
                 { label: "Gallery", to: "/gallery" },
                 { label: "Celebrate", to: "/celebrate" },
+                { label: "Offers", to: "/offers" },
+                { label: "Gift Vouchers", to: "/gift-vouchers" },
+                { label: "Travel Guide", to: "/travel-guide" },
+                { label: "Sustainability", to: "/sustainability" },
                 { label: "Reviews", to: "/reviews" },
                 { label: "Contact", to: "/contact" },
               ].map((l) => (
