@@ -1,4 +1,4 @@
-# 🌊 Ocean — Luxury Retreat & Hospitality Web Experience
+# 🌊 Ocean — Luxury Web Experience
 
 > **Escape to Ocean — a sanctuary in North Bali.**  
 > An ultra-high-performance, luxury hospitality web platform engineered with **React 19**, **Vite 8**, **Tailwind CSS v4**, **Motion**, **Lenis Smooth Scroll**, and **TypeScript**.
